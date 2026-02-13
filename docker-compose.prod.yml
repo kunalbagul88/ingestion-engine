@@ -1,0 +1,17 @@
+version: '3.8'
+
+# Use this for connecting to external database (Neon, AWS RDS, etc.)
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ev-ingestion-api
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
